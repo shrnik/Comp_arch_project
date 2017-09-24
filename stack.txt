@@ -1,0 +1,31 @@
+module stack_8nibble ( clk ,push ,pull ,din ,dout );
+
+output [3:0] dout ;
+reg [3:0] dout ;
+
+input clk ;
+wire clk ;
+input push ;
+wire push ;
+input pull ;
+wire pull ;
+input [3:0] din ;
+wire [3:0] din ;
+
+reg [3:0] stack [0:7] ;
+
+reg [3:0] i;
+
+initial i = 0;
+
+always @ (posedge (clk)) begin
+ if (push) begin 
+  stack[i] <= din;
+  i <= i + 1;
+ end else if (pull) begin
+  dout <= stack[i];
+  i <= i - 1;
+ end
+end  
+
+endmodule
